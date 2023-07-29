@@ -1,0 +1,217 @@
+# 当有新的更新可供下载时，拥有 'bountyhunters.update-notify' 权限的玩家加入服务器时会收到通知。
+# 更改此项后需要重新加载服务器。
+update-notify: false
+
+# 使用MySQL数据库存储赏金和玩家数据。
+# 确保手动创建指定的数据库。
+# 更改此项后需要重新加载服务器。
+my-sql:
+  enabled: false
+  host: 127.0.0.1
+  port: 3306
+  database: database_name
+  table-name:
+    player-data: playerData
+    bounty-data: bounties
+  extra-args: ''
+  username: username
+  password: password
+
+# 启用/禁用插件日志记录；
+# 更改此项后需要重新加载服务器。
+logging:
+  bounty-claim: true
+  bounty-expire: true
+  level-up: false
+
+# 如果 'name' 字段留空，将会扣除赏金创建费用。
+# 如果指定了帐户或玩家，赏金创建费用将会存入特定的银行帐户。
+#
+# 如果使用 'player'，请指定玩家的UUID，可以使用像https://mcuuid.net/这样的网站在线找到UUID。
+tax-bank-account:
+  type: 'account' # 'player'或者 'account'
+  name: ''
+
+# 当禁用时，使用 /bounty 不会增加玩家当前的赏金，而是会创建一个新的具有相同目标的赏金。
+#
+# 此选项在游戏玩法方面不产生任何影响。它只是显示给定赏金的所有贡献者，使用多个赏金列表中的项目，使其看起来像服务器中有更多的赏金活动。
+#
+# 它给人一种有更多赏金活动的印象。
+bounty-stacking: true
+
+# 玩家需要等待的时间来执行 /bounty 两次。
+# 单位：秒。
+bounty-set-restriction: 120
+
+# 一个玩家可以创建/增加的最大赏金数。
+# 将值设置为0表示无限制
+bounty-amount-restriction: 5
+
+# 当启用时，领取赏金或非法击败玩家将不再显示死亡信息。
+disable-death-message:
+  auto-bounty: true
+  bounty-claim: true
+
+# 如果赏金长时间处于不活动状态，将自动删除赏金。
+# 时间以小时为单位，指的是赏金在不更新（既不领取也没有人增加）的情况下被视为不活动的时间。
+# 720小时 = 30天，360小时 = 15天 是较好的值
+# 
+# 赏金检查每2分钟进行一次。为了减少聊天垃圾，每5分钟只能删除1个赏金。
+# 更改此选项后需要重新加载服务器。
+inactive-bounty-removal:
+  enabled: true
+  time: 720
+
+# 设置任何参数为 'true' 表示有新的限制适用。
+# 更改这些选项后请确保重新启动服务器。
+claim-restrictions:
+
+  # 玩家不可以领取自己设置的赏金。
+  own-bounties: true
+
+  # 玩家不能领取未设置赏金的玩家。
+  bed-spawn-point:
+    enabled: false
+
+    # 方块距离阈值
+    radius: 100
+
+  # 玩家只有在追踪赏金目标时才可以领取赏金。
+  targets-only: false
+
+  # 与PartyAndFriends和BungeeFriends兼容
+  # 玩家不可以杀害自己的朋友来领取赏金。
+  friends: true
+
+  # 与Towny兼容
+  # 玩家不可以杀害同一个城镇的成员来领取赏金。
+  town-members: true
+
+  # 与Lands兼容
+  # 如果玩家的土地信任目标，则玩家无法与目标赏金交互
+  lands: true
+
+  # 与SimpleClans兼容
+  simple-clans: true
+
+  # 与UltimateClans兼容
+  ultimate-clans: true
+
+  # 与FactionsUUID/SaberFactions等兼容
+  factions: true
+
+  # 与Guilds兼容
+  guilds: true
+
+  # 与KingdomsX兼容
+  kingdoms: true
+
+# 当玩家领取赏金时，控制台将执行的命令。
+# {target} 返回目标玩家的名称，{player} 返回领取者的名称。命令支持PlaceholderAPI的占位符。
+bounty-commands:
+
+  # 玩家领取赏金时。
+  claim: [ ]
+  # - '/give {player} minecraft:diamond 10'
+  # - '/tell {target} Someone claimed your bounty.'
+
+  # 设置赏金时。{reward}
+  place:
+    player: [ ]
+    console: [ ]
+    # 当玩家非法击败另一个玩家时。
+    auto-bounty: [ ]
+
+  # 当赏金增加了 {amount}
+  increase:
+    player: [ ]
+    console: [ ]
+    # 当玩家非法击败另一个玩家时。
+    auto-bounty: [ ]
+
+# 启用自动给未设置赏金的玩家加赏金的功能。
+auto-bounty:
+  enabled: false
+
+  # 赏金奖励
+  reward: 100
+
+  # 应用的几率
+  chance: 100
+
+  # 如果赏金已经设置，是否继续增加赏金
+  increment: true
+
+# 当玩家登录时，如果玩家带有赏金，则显示不同的登录信息。
+# 更改此项后需要 /reload。
+target-login-message:
+  format: '&e{player} joined the game with a &6${bounty}&e bounty!'
+  enabled: true
+
+# 当启用时，玩家需要携带目标玩家的头部并右键点击才能领取赏金。
+# 确保在切换此选项时同时禁用 'drop-head.killer' 和 'drop-head.creator'。
+# 更改此项后需要重新加载服务器。
+head-hunting:
+  enabled: false
+
+# 领取赏金时掉落玩家头颅或者将头颅给予赏金创建者。
+# 在启用 'drop-head.killer' 选项时，确保禁用 'drop-head.creator' 选项。
+drop-head:
+
+  # 在地面上掉落头颅。
+  killer:
+    enabled: false
+    chance: 100
+
+  # 给予赏金创建者头颅，或者将头颅保存在赏金头颅GUI中，可以使用 /redeembountyheads 命令打开。
+  # 此选项也可以与头颅狩猎一起使用，将头颅给予右键点击的玩家。
+  creator:
+    enabled: false
+    chance: 100
+
+# 玩家追踪允许玩家使用追踪罗盘追踪目标玩家。
+# 一方面，这给了猎人优势，因为他们可以找到目标玩家，但同时也让目标玩家知道有多少玩家在追踪他们。
+player-tracking:
+  enabled: true
+
+  # 当持有罗盘时，在目标玩家周围显示粒子效果。
+  target-particles: true
+
+  # 设置为true，玩家可以追踪他们自己设置的赏金
+  can-track-own-bounties: true
+
+  # 追踪罗盘的价格。
+  price: 1000
+
+  # 玩家在追踪另一个玩家之前需要等待的冷却时间。
+  cooldown: 240
+
+# 赏金奖励的最小和最大值。
+# 将最大值设置为0表示取消最大限制。
+min-reward: 0
+max-reward: 0
+
+bounty-tax:
+
+  # 创建赏金时收取的税金（用于防止滥用）。
+  # 以百分比形式指定，以奖励金额的比例和一个固定金额作为税金
+  bounty-creation:
+    flat: 0
+    scale: 15
+
+  # 当玩家移除他们设置的赏金时收取的税金。
+  # 默认值为17.8% + $0，因为它相当于在考虑到赏金创建税金时的初始金额的30%。
+  bounty-removal:
+    flat: 0
+    scale: 17.8
+
+  # 设置赏金时的税金
+  target-set:
+    flat: 0
+    scale: 10 # 根据赏金金额缩放
+
+# 启用等级奖励。
+enable-level-rewards: true
+
+# 显示格式化的数字（例如：1,345B 而不是 1,345,416,416）。
+formatted-numbers: true

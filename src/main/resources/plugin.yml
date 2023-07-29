@@ -1,0 +1,83 @@
+name: BountyHunters
+version: ${project.version}
+main: net.Indyuce.bountyhunters.BountyHunters
+author: Indyuce
+api-version: 1.13
+depend: [ Vault ]
+softdepend: [ WorldGuard,Residence,PartyAndFriends,BungeeFriends,Towny,PlaceholderAPI,Lands,Parties ]
+
+commands:
+  addbounty:
+    description: 设置一名玩家的悬赏。
+    aliases: [ bounty, setbounty ]
+  bounties:
+    description: 查看所有有效的悬赏。
+  hunters:
+    description: 打开猎人排行榜。
+    aliases: [ hunterleaderboard, hunterlb ]
+  redeembountyheads:
+    description: 兑换玩家头颅。
+
+permissions:
+
+  # 访问管理员指令
+  bountyhunters.admin:
+    default: op
+
+  # 访问悬赏列表
+  bountyhunters.list:
+    default: op
+
+  # 访问猎人排行榜
+  bountyhunters.leaderboard:
+    default: op
+
+  # 访问追踪指南针
+  bountyhunters.compass:
+    default: op
+
+  # 允许使用 /addbounty
+  bountyhunters.add:
+    default: op
+
+  # 访问升级特权
+  bountyhunters.title:
+    default: op
+  bountyhunters.animation:
+    default: op
+
+  # 玩家可以对自己设置悬赏
+  bountyhunters.self:
+    default: op
+
+  # 允许使用 /redeembountyheads
+  bountyhunters.redeem-heads:
+    default: op
+
+  # 允许认领悬赏
+  bountyhunters.claim:
+    default: op
+
+  # 允许移除悬赏部分
+  bountyhunters.remove:
+    default: op
+
+  # 管理员权限，其他玩家无法对你设置悬赏
+  bountyhunters.immunity:
+    default: false
+
+  # 旁路之前的权限
+  bountyhunters.immunity.bypass:
+    default: false
+
+  # 你不会被标记为目标
+  bountyhunters.untargetable:
+    default: false
+
+  # 旁路之前的权限
+  bountyhunters.untargetable.bypass:
+    default: false
+
+  # 加入时收到更新通知
+  bountyhunters.update-notify:
+    default: op

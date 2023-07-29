@@ -1,0 +1,15 @@
+/.idea/
+/target/
+/.settings/
+/.idea/
+/.m2/
+/bin/
+
+BountyHunters.iml
+BountyHunters.eml
+
+bounty-hunters.iml
+bounty-hunters.eml
+
+.flattened-pom.xml
+dependency-reduced-pom.xml

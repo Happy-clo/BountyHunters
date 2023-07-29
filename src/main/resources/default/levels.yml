@@ -1,0 +1,86 @@
+# 玩家升级时获得的奖励。
+# 由于这些名称不会在游戏中显示，所以大写或小写并不重要，只需确保它们是不同的。
+
+# 等级上限：50
+
+reward:
+
+    # 玩家头衔将在悬赏排行榜中显示，
+    # 以及玩家认领悬赏时显示。
+    # 也可以使用占位符获得它们。
+    title:
+        HEAD_HUNTER:
+            format: '头猎人'
+            unlock: 1
+        HEAD_COLLECTOR:
+            format: '头收集者'
+            unlock: 2
+        EXPERIENCED_HUNTER:
+            format: '经验猎人'
+            unlock: 3
+        GREEDY_HUNTER:
+            format: '贪婪猎人'
+            unlock: 4
+        DEAD_OR_ALIVE:
+            format: '生死未卜'
+            unlock: 5
+        BLOODTHIRSTY:
+            format: '嗜血如命'
+            unlock: 6
+        BOUNTY_HUNTER:
+            format: '{star} 悬赏猎人 {star}'
+            unlock: 8
+        LEGENDARY_HUNTER:
+            format: '{star} 传奇猎人 {star}'
+            unlock: 15
+        THE_LEGEND:
+            format: '{diamond} 传奇 {diamond}'
+            unlock: 25
+
+    # '悬赏动画'在认领悬赏时在聊天中显示一条消息，
+    # 并在被击败的玩家周围播放粒子效果。
+    #
+    # 没有粒子效果，请删除 'effect: ..' 行或将其保留为 NONE。
+    #
+    # 对于头颅狩猎，动画会在击败玩家并收集头颅时播放。
+    #
+    # 您可以使用 PAPI 占位符访问悬赏语录。
+    animation:
+        MAY_DEATH:
+            format: '愿死神迎接你...'
+            unlock: 3
+            effect: NONE
+        DIAMOND:
+            format: '你最好不要再偷那颗钻石了。'
+            unlock: 6
+            effect: GOLD
+        TRY_ME:
+            format: '来试试我'
+            unlock: 10
+            effect: TOTEM
+        SHEEP:
+            format: '看着我把它们变成绵羊！'
+            unlock: 12
+            effect: METAMORPHOSE
+        GIT_GUD:
+            format: '努力变强吧'
+            unlock: 15
+            effect: FLAME_VORTEX
+        CENA:
+            format: '你看不见我！！'
+            unlock: 20
+            effect: METEOR
+  
+    # 升级时发送的指令。
+    commands:
+        '1':
+        - "say {player} 达到了1级！"
+        
+    # 升级时获得的货币。
+    # 获得的现金 = <基础值> + ( <每级增加值> * <玩家等级> )
+    money:
+        base: 50
+        per-level: 6
+        
+# 玩家需要认领的悬赏数以升级。
+bounties-per-level: 5
